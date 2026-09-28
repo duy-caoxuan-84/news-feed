@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NewsFeed.Api/NewsFeed.Api.csproj" />
+    <Project Path="src/NewsFeed.Common/NewsFeed.Common.csproj" />
+    <Project Path="src/NewsFeed.Worker/NewsFeed.Worker.csproj" />
+  </Folder>
+</Solution>

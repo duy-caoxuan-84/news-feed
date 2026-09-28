@@ -1,0 +1,25 @@
+# .NET build artifacts
+**/bin/
+**/obj/
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.idea/
+
+# Environment files
+.env
+!.env.example
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+venv/
+.venv/
+
+# Docker & local data
+*.log
+docker-volumes/
+scratch/

@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /source
+COPY src/NewsFeed.Common/*.csproj src/NewsFeed.Common/
+COPY src/NewsFeed.Api/*.csproj src/NewsFeed.Api/
+COPY src/NewsFeed.Worker/*.csproj src/NewsFeed.Worker/
+RUN dotnet restore src/NewsFeed.Worker/NewsFeed.Worker.csproj
+
+COPY src/NewsFeed.Common/ src/NewsFeed.Common/
+COPY src/NewsFeed.Worker/ src/NewsFeed.Worker/
+RUN dotnet publish src/NewsFeed.Worker/NewsFeed.Worker.csproj -c Release -o /app/publish
+
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "NewsFeed.Worker.dll"]
